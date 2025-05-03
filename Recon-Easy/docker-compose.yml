@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  ctf-webserver:
+    build: .
+    container_name: ctf-north-torbia-secret
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+    # Set restart policy (optional)
+    restart: unless-stopped
+    # Add hostname for easier reference within compose (optional)
+    hostname: ctf-challenge
+
+networks:
+  default:
+    driver: bridge
+

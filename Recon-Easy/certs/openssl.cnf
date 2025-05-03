@@ -1,0 +1,26 @@
+# OpenSSL configuration file for generating a self-signed certificate
+# with Subject Alternative Names (SAN).
+
+[ req ]
+default_bits       = 2048
+distinguished_name = req_distinguished_name
+req_extensions     = req_ext
+prompt             = no
+
+[ req_distinguished_name ]
+C            = NT
+ST           = GloriousState
+L            = CapitalCity
+O            = Ministry of Truth
+OU           = Web Operations
+CN           = public.ctf.local
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+# List all the hostnames the certificate should be valid for.
+# The first one often matches the CN.
+# The second one is the hidden hostname for the CTF challenge.
+DNS.1 = public.ctf.local
+DNS.2 = definitelynotaflag.north.torbia

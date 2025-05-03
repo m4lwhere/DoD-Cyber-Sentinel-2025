@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  rtsp-relay4:
+    restart: unless-stopped
+    image: flaviostutz/rtsp-relay
+    ports:
+        - 8774:8554
+    environment:
+        - SOURCE_URL=file:///video/flag.mp4
+    volumes:
+        - ./video:/video
+      
