@@ -6,7 +6,7 @@ We've received intel that Juche Jaguar has exposed a network stream on the host 
 ### Hints
 1. The open port uses RTSP. Once the port is found, you will need the correct stream name.
 2. You will need to enumerate the stream name through some type of brute forcing. Use tools like `ffprobe` to help find the correct stream.
-2. Use ffplayer or VLC to connect to the stream once you have the correct RTSP URI. 
+3. Use ffplayer or VLC to connect to the stream once you have the correct RTSP URI. 
 
 ### Answer
 After scanning the server for open ports, it is noted that port 8554 is open on TCP. When performing service scans, Nmap responds thinking that it may likely be RTSP. 
