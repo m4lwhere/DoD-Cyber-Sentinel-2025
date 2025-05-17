@@ -10,7 +10,7 @@ services:
     # Set restart policy (optional)
     restart: unless-stopped
     # Add hostname for easier reference within compose (optional)
-    hostname: ctf-challenge
+    hostname: not-torbian
 
 networks:
   default:

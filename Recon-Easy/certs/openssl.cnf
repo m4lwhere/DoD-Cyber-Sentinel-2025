@@ -5,6 +5,7 @@
 default_bits       = 2048
 distinguished_name = req_distinguished_name
 req_extensions     = req_ext
+x509_extensions    = v3_ca
 prompt             = no
 
 [ req_distinguished_name ]
@@ -13,14 +14,20 @@ ST           = GloriousState
 L            = CapitalCity
 O            = Ministry of Truth
 OU           = Web Operations
-CN           = public.ctf.local
+CN           = not-torbian.ethtrader-ai.com
 
 [ req_ext ]
 subjectAltName = @alt_names
+
+[v3_ca]
+subjectAltName = @alt_names
+basicConstraints = CA:FALSE
+keyUsage = digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
 
 [ alt_names ]
 # List all the hostnames the certificate should be valid for.
 # The first one often matches the CN.
 # The second one is the hidden hostname for the CTF challenge.
-DNS.1 = public.ctf.local
+DNS.1 = not-torbian.ethtrader-ai.com
 DNS.2 = definitelynotaflag.north.torbia
