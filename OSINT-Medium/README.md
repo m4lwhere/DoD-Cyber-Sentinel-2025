@@ -10,6 +10,10 @@ The flag is any valid [decimal degree coordinate notation](https://en.wikipedia.
 For example, the White House would be at decimal degree notion of 38.897, -77.036. The flag for the White House would be:
 `C1{38.897,-77.036}`
 
+# Hints
+1. These photos involve information from a major North Korean press release. What information is shared about this, are there any identifiable archetecture items? https://www.nknews.org/2025/04/kim-jong-un-vows-cars-and-gaming-for-core-citizens-but-whats-behind-the-pitch/
+2. This is a newer development in north eastern Pyongyang. However, the most recent satellite photos on Google Earth or Bing do not have thes buildings present. What other items in the background can help geolocate?
+
 # Solution
 This photo was released as a part of a major press release for a North Korean building project. When reviewing these press releases, it was noted that this is for the [Hwasong residential project in northern Pyongyang](https://www.nknews.org/2025/04/kim-jong-un-vows-cars-and-gaming-for-core-citizens-but-whats-behind-the-pitch/). The skyscraper bridge in the second photo is not currently within Google Maps satellite photos, but can be determined through the background buildings of other photos.
 

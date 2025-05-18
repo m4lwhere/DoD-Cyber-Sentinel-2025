@@ -9,7 +9,7 @@ Author: m4lwhere
 
 ## Hints
 1. Pay attention to the TLS certificate. Are there other hostnames on there? This may indicate Host-header injection vulnerabilities.
-2. Certain TLDs cannot be resolved. Place the hostname resolution in your hosts file (`/etc/hosts` or `C:\Windows\system32\drivers\etc\hosts`) or use Burp's DNS resolution capabilities.
+2. Certain TLDs cannot be resolved publicly, but can still be used to serve Virtual Hosted websites. Place the hostname resolution in your hosts file (`/etc/hosts` or `C:\Windows\system32\drivers\etc\hosts`) or use Burp's DNS resolution capabilities.
 
 
 ## What you need to do
