@@ -1,4 +1,4 @@
-# Hard
+# Decryption Conniption 😤🔓😤 
 
 ### Description
 Uh oh! Our HR team made an oopsie-whoopsie and appears to have hired a North Torbian Python Developer. We know this person was given access to our proprietary code, can you find out if they were able to steal any of it?
