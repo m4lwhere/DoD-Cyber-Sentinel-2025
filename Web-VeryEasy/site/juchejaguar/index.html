@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Juche Jaguar Secret Lair</title>
+
+<!-- 𝑩𝒂𝒏𝒂𝒏𝒂-𝑹𝒂𝒗𝒆 CSS -->
+<style>
+/* Matrix-style falling glyphs in the background */
+body{
+  margin:0;
+  font-family:monospace;
+  background:#000;
+  color:#0f0;
+  height:100vh;
+  display:grid;
+  place-content:center;
+  overflow:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at center,#001800 0%,#000 70%);
+  z-index:-2;
+}
+/* Falling code overlay */
+body::after{
+  content:attr(data-stream);
+  position:fixed;
+  inset:0;
+  font-size:1.2rem;
+  line-height:1;
+  color:#00ff99;
+  opacity:0.12;
+  white-space:pre;
+  animation:drizzle 20s linear infinite;
+  z-index:-1;
+}
+@keyframes drizzle{
+  0%{transform:translateY(-100%)}
+  100%{transform:translateY(100%)}
+}
+
+/* Glitchy title */
+h1{
+  font-size:3rem;
+  position:relative;
+  animation:glitch 2s infinite;
+}
+@keyframes glitch{
+  0% {clip-path:inset(0 0 20% 0);}
+  20%{clip-path:inset(80% 0 0 0);}
+  40%{clip-path:inset(10% 0 15% 0);}
+  60%{clip-path:inset(40% 0 43% 0);}
+  80%{clip-path:inset(75% 0 5% 0);}
+  100%{clip-path:inset(0 0 0 0);}
+}
+
+/* Flag container pulses */
+.flag{
+  font-size:2rem;
+  padding:1rem 2rem;
+  border:4px double #0f0;
+  background:rgba(0,255,0,0.05);
+  animation:pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 10px #0f0;}
+  50%{box-shadow:0 0 25px #0f0;}
+}
+</style>
+
+<!-- generate long nonsense stream for matrix effect -->
+<script>
+const glyphs='アイウエオカキクケコサシスセソタチツテトナニヌネノ0123456789$#@';
+document.addEventListener('DOMContentLoaded',()=>{
+  const rows=120,cols=80;
+  let stream='';
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      stream+=glyphs[Math.floor(Math.random()*glyphs.length)];
+    }
+    stream+='\n';
+  }
+  document.body.setAttribute('data-stream',stream);
+});
+</script>
+</head>
+
+<body>
+  <h1>🐾 Juche Jaguar was here! 🐾</h1>
+  <p>Congratulations, intrepid crawler. You ignored instructions—just like the best hackers.</p>
+  <div class="flag">C1{r0b0ts_arent_4lways_p0lit3}</div>
+  <p style="margin-top:1.5rem;">(Report this flag back to claim your points.)</p>
+</body>
+</html>

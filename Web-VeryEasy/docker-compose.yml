@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  ctf-webserver:
+    build: .
+    container_name: web-ve
+    ports:
+      - "0.0.0.0:8005:80"
+      - "0.0.0.0:443:443"
+    # Set restart policy (optional)
+    restart: unless-stopped
+    # Add hostname for easier reference within compose (optional)
+    hostname: web-ve
+
+networks:
+  default:
+    driver: bridge
+
