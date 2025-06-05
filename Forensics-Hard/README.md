@@ -223,8 +223,24 @@ $ vol -f ./memory.raw windows.filescan | grep -i 'keylog.log'
 ```
 
 Great! It looks like there are two files here we can try to carve out, but we don't seem to have much luck. Let's peek closer at the notepad processes. We can try to parse out the information from Notepad with the following Volatility module:
+
 - https://github.com/spitfirerxf/vol3-plugins
-Specifically, we want to use the `notepad.py` module to try and read into the `notepad.exe` process further. Remember, this needs to be placed into the correct folder within the `pipx` managed installation path. Adding the `--dump` switch will place the notepad content into files for us :)
+
+Specifically, we want to use the `notepad.py` module to try and read into the `notepad.exe` process further. Remember, this needs to be placed into the correct folder within the `pipx` managed installation path. In my case, it was at `~/.local/share/pipx/venvs/volatility3/lib/python3.12/site-packages/volatility3/plugins/windows`. The `notepad.py` should be placed into this directory in order to be accessed by Volatility properly.
+
+```
+~/.local/share/pipx/venvs/volatility3/lib/python3.12/site-packages/volatility3/plugins/windows$ ll
+total 32
+drwxrwxr-x 4 chris chris 4096 May 11 22:13 ./
+drwxrwxr-x 6 chris chris 4096 May 10 08:35 ../
+-rw-rw-r-- 1 chris chris  981 May 10 08:35 __init__.py
+-rw-rw-r-- 1 chris chris 4697 May 11 22:13 notepad.py
+drwxrwxr-x 2 chris chris 4096 May 11 22:13 __pycache__/
+drwxrwxr-x 3 chris chris 4096 May 10 08:35 registry/
+-rw-rw-r-- 1 chris chris 3859 May 10 08:35 statistics.py
+```
+
+Adding the `--dump` switch will place the notepad content into files for us :)
 
 ```
 vol -f ./memory.raw windows.notepad --dump
