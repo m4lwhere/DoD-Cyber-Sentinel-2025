@@ -228,6 +228,9 @@ Great! It looks like there are two files here we can try to carve out, but we do
 
 Specifically, we want to use the `notepad.py` module to try and read into the `notepad.exe` process further. Remember, this needs to be placed into the correct folder within the `pipx` managed installation path. In my case, it was at `~/.local/share/pipx/venvs/volatility3/lib/python3.12/site-packages/volatility3/plugins/windows`. The `notepad.py` should be placed into this directory in order to be accessed by Volatility properly.
 
+> [!IMPORTANT]  
+> The latest version of Volatility 3 (v2.26.0) has a breaking change which will prevent this plugin from working properly. Either downgrade to an earlier version of Volatility 3 (such as v2.11.0). This challenge was developed before the feature parity release of Volatility 3 became available. However, this does not prevent the challenge from being sovleable! 
+
 ```
 ~/.local/share/pipx/venvs/volatility3/lib/python3.12/site-packages/volatility3/plugins/windows$ ll
 total 32
@@ -271,10 +274,15 @@ strings ./memory.raw | grep -i 'CLIENT_RANDOM'
 But note that there is much more than only the `CLIENT_RANDOM` field, so we need to try and extract the entire file. To find out which fields are required, we can set the SSLKEYLOGFILE on a test machine we have. This is a good way to troubleshoot and understand what we might be looking for!
 
 Let's do this by dumping all strings in the memory capture, then finding it based on the line, then extracting only the related keylog files.
+
+> [!IMPORTANT]  
+> By default, strings will only search for 8-bit characters and will not properly interpret 16-bit strings. In order to effectively carve out the secrets in memory, we must use the -el switch!
+
 ```sh
-strings -n 16 ./memory.raw | grep -E 'CLIENT_HANDSHAKE|SERVER_HANDSHAKE|CLIENT_TRAFFIC|SERVER_TRAFFIC|EXPORTER_SECRET|CLIENT_RANDOM' >> ../Answers/keylog.log
+strings -n 16 -el ./memory.raw | grep -E 'CLIENT_HANDSHAKE|SERVER_HANDSHAKE|CLIENT_TRAFFIC|SERVER_TRAFFIC|EXPORTER_SECRET|CLIENT_RANDOM' >> ../Answers/keylog.log
 ```
-I've personally had much less success with this method, but it is possible.
+
+If this ran properly, there should be a significant amount of lines in this file, well over 1,800. Now 
 
 #### Decrypting Streams
 Great! Now let's try to see if we can decrypt the TLS steams in the PCAP. Load up Wireshark, then place these into the Edit > Preferences > TLS section as the SSL Keylog file. Once this is added, then click OK, Wireshark will attempt to decrypt TLS streams with this data.
