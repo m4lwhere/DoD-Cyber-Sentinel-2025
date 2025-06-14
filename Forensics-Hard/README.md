@@ -56,11 +56,11 @@ $ tshark -r ./evidence.pcapng -Y 'vnc.client_message_type == 4' -T fields -e vnc
 Adding more into our one-liner to decode this hex, we can see some interesting values being provided so far. But this still seems off, so let's continue to dig into it a bit more:
 
 ```
-$ tshark -r ./evidence.pcapng -Y 'vnc.client_message_type == 4' -T fields -e vnc.key | awk -F'x' '{ printf "%c", strtonum("0x"$2) } END{ print "" }'
+$ tshark -r ./evidence.pcapng -Y 'vnc.client_message_type == 4' -T fields -e vnc.key | gawk -F'x' '{ printf "%c", strtonum("0x"$2) } END{ print "" }'
 tthh33￡__￡iirr00nn￡__￡ppoottaatt00￡__￡gguuiidd33ss￡__￡uuss￡<<￡33ggoo－－
 ```
 
-Looking closer at the packets, it seems like there are at least two packets per letter. This is because of the "Key Down" flag in the VNC protocol. With this knowledge, let's isloate only the packets with the keydown within our filter.
+Looking closer at the packets, it seems like there are at least two packets per letter. This is because of the "Key Down" flag in the VNC protocol. With this knowledge, let's isolate only the packets with the keydown within our filter.
 
 ```
 vnc.client_message_type == 4 && vnc.key_down == 1
